@@ -3,14 +3,22 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+
     android:layout_weight="1"
     android:gravity="center">
     <ImageView
         android:id="@+id/appIcon"
+        android:src="@mipmap/ic_launcher_round"
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
         android:layout_height="wrap_content" />
+    <!-- android:layout_margin="20dp"-->
     <TextView
         android:id="@+id/appName"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:layout_marginTop="0dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
