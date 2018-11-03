@@ -4,11 +4,8 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +14,10 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,19 +40,30 @@ public class MainActivity extends AppCompatActivity {
 
                 //该应用的包名
                 String pkg = info.activityInfo.packageName;
-                System.out.println(pkg);
                 //应用的主activity类
                 String cls = info.activityInfo.name;
 
                 ComponentName component = new ComponentName(pkg, cls);
-
-                Intent i = new Intent();
-                i.setComponent(component);
-                startActivity(i);
-
-
+                if (new Random().nextInt() % 2 == 0) {
+                    Intent i = new Intent();
+                    i.setComponent(component);
+                    startActivityForResult(i, 120);
+                } else {
+                    Toast.makeText(MainActivity.this, "hello " + pkg, Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 120:
+                // 我回来啦
+                Toast.makeText(MainActivity.this, "我回来啦", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
     private void loadApps() {
